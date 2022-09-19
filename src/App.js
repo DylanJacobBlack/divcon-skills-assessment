@@ -6,19 +6,21 @@ function App() {
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+      .then((data) =>
         setPosts(
-          data.sort((a, b)=>(b.id - a.id)).slice(0, 21).map((post) => (
-            <tr>
-              <td>{post.id}</td>
-              <td>{post.userId}</td>
-              <td>{post.title}</td>
-              <td>{post.body}</td>
-            </tr>
-          ))
-        );
-      });
+          data
+            .sort((a, b) => b.id - a.id)
+            .slice(0, 21)
+            .map((post) => (
+              <tr>
+                <td>{post.id}</td>
+                <td>{post.userId}</td>
+                <td>{post.title}</td>
+                <td>{post.body}</td>
+              </tr>
+            ))
+        )
+      );
   }, [setPosts]);
 
   return (
